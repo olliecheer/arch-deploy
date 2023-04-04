@@ -1,0 +1,52 @@
+{
+    "languageserver": {
+        "bash": {
+            "command": "bash-language-server",
+            "args": [
+                "start"
+            ],
+            "filetypes": [
+                "sh"
+            ]
+        },
+        "clangd": {
+            "command": "clangd",
+            "args": [
+                "-header-insertion=never"
+            ],
+            "rootPatterns": [
+                "compile_commands.json",
+                ".clangd",
+                ".git"
+            ],
+            "filetypes": [
+                "c",
+                "cc",
+                "cpp"
+            ]
+        },
+        "cmake": {
+            "command": "cmake-language-server",
+            "filetypes": [
+                "cmake"
+            ],
+            "rootPatterns": [
+                "build/"
+            ],
+            "initializationOptions": {
+                "buildDirectory": "build"
+            }
+        }
+    },
+    "python.analysis.typeCheckingMode": "basic",
+    "list.source.grep.command": "rg",
+    "list.source.grep.useLiteral": false,
+    "workspace.rootPatterns": [
+        ".git",
+        ".hg",
+        ".projections.json"
+    ],
+    "workspace.ignoredFolders": [
+        "${userHome}"
+    ]
+}

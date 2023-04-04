@@ -1,0 +1,115 @@
+# env:
+#   TERM: xterm-256color
+
+key_bindings:
+  - { key: Return,   mods: Control|Shift, action: SpawnNewInstance }
+
+
+window:
+  decorations: full
+
+window.opacity: 0.8
+
+save_to_clipboard: true
+
+window.dynamic_title: true
+
+live_config_reload: true
+
+draw_bold_text_with_bright_colors: true
+
+
+shell:
+  program: /usr/bin/bash
+
+mouse:
+  hide_when_typing: true
+
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
+
+font:
+  normal:
+    family: DejaVu Sans Mono
+    style: Regular
+    # style: Bold
+
+
+  bold:
+    family: DejaVu Sans Mono
+    style: Bold
+
+  italic:
+    family: DejaVu Sans Mono
+    style: Italic
+
+  bold_italic:
+    family: DejaVu Sans Mono
+    style: Bold Italic
+
+  size: 12
+
+colors:
+  # Default colors
+  primary:
+    background: '0x122637'
+    foreground: '0xeeeeee'
+  # Colors the cursor will use if `custom_cursor_colors` is true
+  cursor:
+    text: '0x122637'
+    cursor: '0xf0cb09'
+
+  # Normal colors
+  normal:
+    black:   '0x000000'
+    red:     '0xff0000'
+    green:   '0x37dd21'
+    yellow:  '0xfee409'
+    blue:    '0x1460d2'
+    magenta: '0xff005d'
+    cyan:    '0x00bbbb'
+    white:   '0xbbbbbb'
+
+  # Bright colors
+  bright:
+    black:   '0x545454'
+    red:     '0xf40d17'
+    green:   '0x3bcf1d'
+    yellow:  '0xecc809'
+    blue:    '0x5555ff'
+    magenta: '0xff55ff'
+    cyan:    '0x6ae3f9'
+    white:   '0xffffff'
+
+# # Colors (Paper Theme)
+# colors:
+#   # Default colors
+#   primary:
+#     background: '#F2EEDE'
+#     foreground: '#000000'
+
+#   # Normal colors
+#   normal:
+#     black:   '#000000'
+#     red:     '#CC3E28'
+#     green:   '#216609'
+#     yellow:  '#B58900'
+#     blue:    '#1E6FCC'
+#     magenta: '#5C21A5'
+#     cyan:    '#158C86'
+#     white:   '#AAAAAA'
+
+#   # Bright colors
+#   bright:
+#     black:   '#555555'
+#     red:     '#CC3E28'
+#     green:   '#216609'
+#     yellow:  '#B58900'
+#     blue:    '#1E6FCC'
+#     magenta: '#5C21A5'
+#     cyan:    '#158C86'
+#     white:   '#AAAAAA'
+
