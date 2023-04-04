@@ -6,29 +6,8 @@ install() {
     sudo pacman -S --noconfirm --needed "$@"
 }
 
-prepare_aur() {
-    read -d '' ARCHLINUXCN <<EOF || true
-[archlinuxcn]
-Server = https://mirrors.aliyun.com/archlinuxcn/\$arch
-EOF
-
-    if [[ ! $(grep -qxF '[archlinuxcn]' /etc/pacman.conf) ]]; then
-        echo ">> [archlinuxcn] is already set in /etc/pacman.conf"
-    else
-        sudo echo "$ARCHLINUXCN" > /etc/pacman.conf
-        echo ">> [archlinuxcn] appended"
-    fi
-
-    sudo rm -rf /etc/pacman.d/gnupg
-    install archlinuxcn-keyring
-    sudo pacman-key --init
-    sudo pacman-key --polulate archlinux
-    sudo pacman-key --polulate archlinuxcn
-    install yay
-}
-
 aur_install() {
-    if [[ $(id -u) == "0" ]]; then
+    if [[ $(id -u) -eq 0 ]]; then
         echo "please run aur_install as normal user"
         exit 1
     fi
@@ -47,10 +26,6 @@ FS=(
     ntfs-3g fuse gvfs
     )
 
-deploy_asound() {
-
-}
-
 install_basic() {
     install "${VIDEO[@]}"
     install "${SOUND[@]}"
@@ -62,7 +37,8 @@ CMDLINE=(
     bash-completion openssh tmux
     mlocate man-db man-pages
     ranger python-pdftotext highlight
-    tree which
+    tree which wget curl
+    clash
     )
 
 QEMU=(
@@ -83,6 +59,7 @@ install_comandline() {
 COMPILER=(
     gcc make bear cmake gdb meson ninja
     clang llvm lldb
+    python-pip
     )
 
 install_languages() {
@@ -90,7 +67,7 @@ install_languages() {
 }
 
 BUILD_TOOLS=(
-    pkg-config
+    pkgconf fakeroot
     flex bison bc
     )
 
@@ -99,17 +76,22 @@ install_build_tools() {
 }
 
 NEOVIM=(
-    neovim bash-language-server 
+    neovim bash-language-server  nodejs npm 
     )
 
 install_neovim() {
+    sudo ln -sf /usr/bin/nvim /usr/bin/vim
     install "${NEOVIM[@]}"
 }
 
 WM=(
-    sway swayidle waybar wdisplays dunst
+    sway swayidle waybar swaybg
+    wdisplays
+    dunst
     picom brightnessctl kanshi
-    grim wl-clipboard clipman slurp swappy
+    grim wl-clipboard
+    clipman
+    slurp swappy
     )
 
 GUI_VIEWER=(
@@ -118,17 +100,14 @@ GUI_VIEWER=(
     )
 
 FONTS=(
-    ttf-dejavu ttf-roboto noto-fonts nerd-fonts-complete
+    ttf-dejavu ttf-roboto noto-fonts
+    nerd-fonts-complete
     noto-fonts-cjk adobe-source-han-sans-cn-fonts
     adobe-source-han-serif-cn-fonts
     )
 
 CN_FONTS=(
     wqy-microhei wqy-microhei-lite wqy-zenhei
-    )
-
-BROWSER=(
-    microsoft-edge-stable-bin
     )
 
 install_desktop() {
@@ -139,13 +118,17 @@ install_desktop() {
     aur_install "${BROWSER[@]}"
 }
 
+AUR_INSTALL=(
+    microsoft-edge-stable-bin
+    swaylock-effects rofi-lbonn-wayland-only-git
+    )
+
 
 install_basic
 install_comandline
 install_languages
 install_neovim
 install_desktop
+install_build_tools
 
-prepare_aur
-
-aur_install swaylock-effects rofi-lbonn-wayland-only-git
+aur_install "${AUR_INSTALL[@]}"

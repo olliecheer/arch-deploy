@@ -7,15 +7,19 @@ set_timezone() {
     hwclock --systohc
 }
 
+
 set_locale() {
-    sed -e 's/^#en_GB.UTF-8 UTF-8$/en_GB.UTF-8 UTF-8/' /etc/locale.gen
-    echo 'LANG=en_GB.UTF-8'
+	#sed -i -e 's/^#\(en_GB.UTF-8 UTF-8$\)/en_GB.UTF-8 UTF-8/' /etc/locale.gen
+    sed -i -e 's/^#\(en_GB.UTF-8 UTF-8\)/\1/' /etc/locale.gen 
+    echo 'LANG=en_GB.UTF-8' > /etc/locale.conf
     locale-gen
 }
+
 
 set_hostname() {
     echo "Arch" > /etc/hostname
 }
+
 
 set_hosts() {
     cat <<EOF >/etc/hosts
@@ -27,14 +31,6 @@ ff02::2		ip6-allrouters
 EOF
 }
 
-auto_bootup() {
-    # enable iwd by hand if needed
-    # because target machine may not use wireless interface
-    # systemctl enable iwd
-    sysetmctl systemd-resolved.service
-    systemctl enable dhcpcd
-}
-
 set_root_passwd() {
     passwd
 }
@@ -43,3 +39,35 @@ set_grub() {
     grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=ArchLinux
     grub-mkconfig -o /boot/grub/grub.cfg
 }
+
+setup_package_manager() {
+    echo 'Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
+
+    read -d '' ARCHLINUXCN <<EOF || true
+[archlinuxcn]
+Server = https://mirrors.aliyun.com/archlinuxcn/\$arch
+EOF
+
+    if $(grep -qxF '[archlinuxcn]' /etc/pacman.conf); then
+        echo ">> [archlinuxcn] is already set in /etc/pacman.conf"
+    else
+        sudo echo "$ARCHLINUXCN" >> /etc/pacman.conf
+        echo ">> [archlinuxcn] appended"
+    fi
+
+    sudo pacman -Sy
+    sudo rm -rf /etc/pacman.d/gnupg
+    sudo pacman-key --init
+    sudo pacman-key --populate archlinux
+    install archlinuxcn-keyring
+    sudo pacman-key --populate archlinuxcn
+    install yay
+}
+
+
+set_timezone
+set_locale
+set_hostname
+set_hosts
+set_root_passwd
+set_grub

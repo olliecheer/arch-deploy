@@ -20,10 +20,11 @@ fi
 echo 'Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
 
 pacstrap /mnt base linux linux-firmware neovim iwd dhcpcd \
-    grub efibootmgr os-prober
+    grub efibootmgr os-prober sudo
 
-genfstab -U /mnt >> /mnt/etc/fstab
+genfstab -U /mnt > /mnt/etc/fstab
 
-cp ./material/chroot-do-install.sh /mnt/tmp/ 
+mkdir -p /mnt/arch-deploy
+cp -r ./* /mnt/arch-deploy/
 
-arch-chroot /mnt bash /tmp/chroot-do-install.sh
+arch-chroot /mnt bash /tmp/arch-deploy/chroot-do-install.sh
