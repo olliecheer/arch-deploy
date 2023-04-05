@@ -132,8 +132,8 @@ config_deploy() {
     ln -sf $WORKDIR/material/wallpaper ~/.local/share/
 
     mkdir -p ~/.local/bin
-    ln -sf $WORKDIR/material/bin/blurlock ~/.local/bin/
-    ln -sf $WORKDIR/material/bin/screenshot ~/.local/bin/
+    sudo ln -sf $WORKDIR/material/bin/blurlock /usr/bin/
+    sudo ln -sf $WORKDIR/material/bin/screenshot /usr/bin/
 
     sudo mkdir -p /etc/clash
     sudo ln -sf $WORKDIR/material/etc/clash/Country.mmdb /etc/clash/
@@ -163,4 +163,4 @@ AUR_INSTALL=(
     rofi-lbonn-wayland-only-git
     )
 
-aur_install "${AUR_INSTALL[@]}"
+#aur_install "${AUR_INSTALL[@]}"
