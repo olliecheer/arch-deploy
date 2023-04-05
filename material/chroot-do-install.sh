@@ -20,7 +20,6 @@ set_hostname() {
     echo "Arch" > /etc/hostname
 }
 
-
 set_hosts() {
     cat <<EOF >/etc/hosts
 127.0.0.1	localhost
@@ -31,8 +30,14 @@ ff02::2		ip6-allrouters
 EOF
 }
 
-set_root_passwd() {
-    passwd
+set_user() {
+    passwd root
+    read -p "Press y to create a normal user: " input
+    if [[ ! "$input" == "y" ]]; then
+        read -p "Input username: " username
+        useradd -m $username
+        passwd ollie
+    fi
 }
 
 set_grub() {
@@ -65,10 +70,10 @@ EOF
 }
 
 
-#set_timezone
-#set_locale
-#set_hostname
-#set_hosts
-#set_root_passwd
-#set_grub
+set_timezone
+set_locale
+set_hostname
+set_hosts
+set_user
+set_grub
 setup_package_manager

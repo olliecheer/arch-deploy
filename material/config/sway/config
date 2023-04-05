@@ -18,11 +18,13 @@ exec wl-paste -p -t text --watch clipman store --max-item=30 -P --histpath="~/.l
 # Custom Bindsym Settings.
 bindsym Shift+Alt+h exec clipman pick -t rofi
 bindsym $mod+d exec rofi -i -show drun -modi drun -show-icons
-bindsym Ctrl+Alt+a exec screenshot
+# weird, to be figured out
+bindsym Ctrl+Alt+a exec "$(which screenshot)"
+bindsym Shift+Alt+l exec "$(which blurlock)"
 bindsym $mod+Tab exec rofi -i -show run
 bindsym $mod+F2 exec $proxy_env microsoft-edge-stable $chromium_option
 #bindsym $mod+F2 exec $proxy_env google-chrome-stable
-bindsym $mod+F3 exec thunar
+#bindsym $mod+F3 exec thunar
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym XF86AudioLowerVolume exec "pactl set-sink-volume 0 -5%; notify-send 'volume down'"

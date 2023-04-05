@@ -63,7 +63,7 @@ NEOVIM=(
 WM=(
     sway swayidle waybar swaybg
     wdisplays
-    dunst
+    dunst libnotify
     picom brightnessctl kanshi
     grim wl-clipboard
     clipman
@@ -87,6 +87,7 @@ CN_FONTS=(
     )
 
 pacman_install() {
+    sudo pacman -Sy
     install "${VIDEO[@]}"
     install "${SOUND[@]}"
     install "${FS[@]}"
@@ -137,22 +138,29 @@ config_deploy() {
     sudo mkdir -p /etc/clash
     sudo ln -sf $WORKDIR/material/etc/clash/Country.mmdb /etc/clash/
     sudo ln -sf $WORKDIR/material/etc/clash/clash.service /etc/systemd/system/
+    sudo curl https://ninjasub.com/link/ykIIE0JwYgghfbqB?clash=1 -o /etc/clash/config.yaml || true
 
     sudo ln -sf $WORKDIR/material/etc/asound.conf /etc/
 }
 
 auto_start() {
-    sudo systemctl enable systemd-resolved.service
-    sudo systemctl start systemd-resolved.service
+    sudo systemctl enable systemd-resolved
+    sudo systemctl start systemd-resolved
     sudo systemctl enable dhcpcd
     sudo systemctl start dhcpcd
     sudo systemctl enable clash
     sudo systemctl restart clash
 }
 
-# AUR_INSTALL=(
-#     microsoft-edge-stable-bin
-#     swaylock-effects rofi-lbonn-wayland-only-git
-#     )
+pacman_install
+set_mirror
+config_deploy
+auto_start
 
-# aur_install "${AUR_INSTALL[@]}"
+AUR_INSTALL=(
+    microsoft-edge-stable-bin
+    swaylock-effects-git
+    rofi-lbonn-wayland-only-git
+    )
+
+aur_install "${AUR_INSTALL[@]}"
