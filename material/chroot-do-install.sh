@@ -55,19 +55,20 @@ EOF
         echo ">> [archlinuxcn] appended"
     fi
 
-    sudo pacman -Sy
-    sudo rm -rf /etc/pacman.d/gnupg
-    sudo pacman-key --init
-    sudo pacman-key --populate archlinux
-    install archlinuxcn-keyring
-    sudo pacman-key --populate archlinuxcn
-    install yay
+    pacman -Sy
+    rm -rf /etc/pacman.d/gnupg
+    pacman-key --init
+    pacman-key --populate archlinux
+    pacman -S --noconfirm --needed archlinuxcn-keyring
+    pacman-key --populate archlinuxcn
+    pacman -S --noconfirm --needed yay
 }
 
 
-set_timezone
-set_locale
-set_hostname
-set_hosts
-set_root_passwd
-set_grub
+#set_timezone
+#set_locale
+#set_hostname
+#set_hosts
+#set_root_passwd
+#set_grub
+setup_package_manager

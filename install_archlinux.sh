@@ -24,7 +24,6 @@ pacstrap /mnt base linux linux-firmware neovim iwd dhcpcd \
 
 genfstab -U /mnt > /mnt/etc/fstab
 
-mkdir -p /mnt/arch-deploy
-cp -r ./* /mnt/arch-deploy/
+cp -r $(dirname $(readlink -f $0)) /mnt/
 
-arch-chroot /mnt bash /tmp/arch-deploy/chroot-do-install.sh
+arch-chroot /mnt bash /arch-deploy/material/chroot-do-install.sh
