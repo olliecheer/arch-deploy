@@ -4,7 +4,6 @@ set $down j
 set $up k
 set $right l
 set $term alacritty
-set $proxy_env http_proxy=http://127.0.0.1:7890 https_proxy=http://127.0.0.1:7890
 set $chromium_option --enable-features=UseOzonePlatform --ozone-platform=wayland
 
 output eDP-1 resolution 2160x1440 scale 1.5 position 0,0
@@ -18,12 +17,11 @@ exec wl-paste -p -t text --watch clipman store --max-item=30 -P --histpath="~/.l
 # Custom Bindsym Settings.
 bindsym Shift+Alt+h exec clipman pick -t rofi
 bindsym $mod+d exec rofi -i -show drun -modi drun -show-icons
-# weird, to be figured out
 bindsym Ctrl+Alt+a exec screenshot
 bindsym Shift+Alt+l exec blurlock
 bindsym $mod+Tab exec rofi -i -show run
-bindsym $mod+F2 exec $proxy_env microsoft-edge-stable $chromium_option
-#bindsym $mod+F2 exec $proxy_env google-chrome-stable
+bindsym $mod+F2 exec microsoft-edge-stable $chromium_option
+#bindsym $mod+F2 exec google-chrome-stable
 #bindsym $mod+F3 exec thunar
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
@@ -124,6 +122,10 @@ input "1267:12512:ELAN962C:00_04F3:30E0_Touchpad" {
     bindsym $mod+8 workspace number 8
     bindsym $mod+9 workspace number 9
     bindsym $mod+0 workspace number 10
+    bindsym Alt+Left workspace prev
+    bindsym Alt+Right workspace next
+    bindgesture swipe:right workspace prev
+    bindgesture swipe:left workspace next
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number 1, workspace 1 
     bindsym $mod+Shift+2 move container to workspace number 2, workspace 2 

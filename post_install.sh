@@ -52,7 +52,7 @@ COMPILER=(
     )
 
 BUILD_TOOLS=(
-    pkgconf fakeroot
+    pkgconf fakeroot automake
     flex bison bc
     )
 
@@ -66,7 +66,7 @@ WM=(
     dunst libnotify
     picom brightnessctl kanshi
     grim wl-clipboard
-    clipman
+    clipman xdg-open
     slurp swappy
     )
 
@@ -114,13 +114,15 @@ set_mirror() {
 
 config_deploy() {
     ln -sf $WORKDIR/material/bashrc ~/.bashrc
+    ln -sf $WORKDIR/material/bash_profile ~/.bash_profile
 
     sudo mkdir -p ~/.config
     ln -sf $WORKDIR/material/config/alacritty ~/.config/
-    ln -sf $WORKDIR/material/config/sway ~/.config
+    ln -sf $WORKDIR/material/config/sway ~/.config/
     ln -sf $WORKDIR/material/config/waybar ~/.config
     ln -sf $WORKDIR/material/config/swappy ~/.config/
     ln -sf $WORKDIR/material/config/zathura ~/.config/
+    ln -sf $WORKDIR/material/config/tmux ~/.config/
     if [[ ! -d "$HOME/.local/share/nvim/site/pack/packer/start/packer.nvim" ]]; then
         git clone --depth 1 https://github.com/wbthomason/packer.nvim\
             ~/.local/share/nvim/site/pack/packer/start/packer.nvim

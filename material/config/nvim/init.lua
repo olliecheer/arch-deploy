@@ -24,7 +24,7 @@ vim.opt.updatetime = 300
 
 -- Always show the signcolumn, otherwise it would shift the text each time
 -- diagnostics appeared/became resolved
-vim.opt.signcolumn = "yes"
+-- vim.opt.signcolumn = "yes"
 
 local keyset = vim.keymap.set
 ---@diagnostic disable-next-line: redefined-local
