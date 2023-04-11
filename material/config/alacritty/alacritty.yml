@@ -26,6 +26,21 @@ scrolling:
   history: 10000
   multiplier: 3
 
+hints:
+  alphabet: "jfkdls;ahgurieowpq"
+  enabled:
+   - regex: "(ipfs:|ipns:|magnet:|mailto:|gemini:|gopher:|https:|http:|news:|file:|git:|ssh:|ftp:)\
+             [^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"
+     hyperlinks: true
+     command: xdg-open
+     post_processing: true
+     mouse:
+       enabled: false
+       mods: None
+     binding:
+       key: U
+       mods: Control|Shift
+
 font:
   normal:
     family: DejaVu Sans Mono

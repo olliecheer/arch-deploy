@@ -25,7 +25,7 @@ SOUND=(
     )
 
 FS=(
-    ntfs-3g fuse gvfs
+    ntfs-3g fuse gvfs thunar
     )
 
 CMDLINE=(

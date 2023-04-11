@@ -20,9 +20,9 @@ bindsym $mod+d exec rofi -i -show drun -modi drun -show-icons
 bindsym Ctrl+Alt+a exec screenshot
 bindsym Shift+Alt+l exec blurlock
 bindsym $mod+Tab exec rofi -i -show run
-bindsym $mod+F2 exec microsoft-edge-stable $chromium_option
-#bindsym $mod+F2 exec google-chrome-stable
-#bindsym $mod+F3 exec thunar
+# bindsym $mod+F2 exec microsoft-edge-stable $chromium_option
+bindsym $mod+F2 exec google-chrome-stable $chromium_option
+bindsym $mod+F3 exec thunar
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym XF86AudioLowerVolume exec "pactl set-sink-volume 0 -5%; notify-send 'volume down'"
@@ -124,8 +124,8 @@ input "1267:12512:ELAN962C:00_04F3:30E0_Touchpad" {
     bindsym $mod+0 workspace number 10
     bindsym Alt+Left workspace prev
     bindsym Alt+Right workspace next
-    bindgesture swipe:right workspace prev
-    bindgesture swipe:left workspace next
+    # bindgesture swipe:right workspace prev
+    # bindgesture swipe:left workspace next
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number 1, workspace 1 
     bindsym $mod+Shift+2 move container to workspace number 2, workspace 2 
