@@ -9,7 +9,7 @@ set $chromium_option --enable-features=UseOzonePlatform --ozone-platform=wayland
 output eDP-1 resolution 2160x1440 scale 1.5 position 0,0
 
 exec dunst
-exec swayidle -w timeout 300 'blurlock' timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'blurlock'
+exec swayidle -w timeout 300 'blurlock' timeout 1200 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'blurlock'
 exec swaybg -i ~/.local/share/wallpaper/flower.png
 exec wl-paste -t text --watch clipman store
 exec wl-paste -p -t text --watch clipman store --max-item=30 -P --histpath="~/.local/share/clipman-primary.json"

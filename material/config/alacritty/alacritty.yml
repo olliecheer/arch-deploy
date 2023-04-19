@@ -133,7 +133,8 @@ colors:
 
   cursor:
     cursor: '#ee5d43'
-    text: '#ffd29c'
+    text: '#ffd19b'
+
 
   bright:
     black: '#292e38'
@@ -142,7 +143,7 @@ colors:
     green: '#8fd46d'
     magenta: '#ee5d43'
     red: '#f92672'
-    white: '#c74ded'
+    white: '#f9e8ff'
     yellow: '#ffe66d'
 
   normal:
@@ -152,5 +153,5 @@ colors:
     green: '#8fd46d'
     magenta: '#ee5d43'
     red: '#f0266f'
-    white: '#c74ded'
+    white: '#f6dbff'
     yellow: '#ffe66d'
