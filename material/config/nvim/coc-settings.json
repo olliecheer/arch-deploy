@@ -48,5 +48,6 @@
     ],
     "workspace.ignoredFolders": [
         "${userHome}"
-    ]
+    ],
+    "snippets.ultisnips.pythonPrompt": false
 }

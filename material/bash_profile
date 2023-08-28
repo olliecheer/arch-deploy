@@ -3,3 +3,12 @@
 #
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
+
+export LC_ALL="en_GB.UTF-8"
+
+windows_host=`cat /etc/resolv.conf|grep nameserver|awk '{print $2}'`
+ALL_PROXY=http://$windows_host:7890
+alias with_proxy="http_proxy=$ALL_PROXY https_proxy=$ALL_PROXY"
+#export http_proxy=$ALL_PROXY
+#export https_proxy=$ALL_PROXY
+. "$HOME/.cargo/env"

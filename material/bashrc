@@ -162,6 +162,9 @@ export HISTSIZE=-1
 export HISTFILESIZE=-1
 
 alias cmake='cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 '
-export https_proxy=http://127.0.0.1:7890
-export http_proxy=http://127.0.0.1:7890
-export PATH="~/.local/bin:$PATH"
+alias bear='https_proxy= http_proxy= bear'
+export PATH="/home/pilot/.local/bin:$PATH"
+#export LD_LIBRARY_PATH="/usr/local/cuda-12.2/lib64:$LD_LIBRARY_PATH"
+
+alias noproxy='http_proxy="" https_proxy=""'
+. "$HOME/.cargo/env"

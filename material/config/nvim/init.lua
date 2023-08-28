@@ -9,10 +9,10 @@ vim.bo.softtabstop = 4
 vim.cmd([[highlight NormalFloat ctermbg=DarkGrey]])
 
 -- Limit nodejs memory consumption in MB
-vim.g.coc_node_args = {'--max-old-space-size=4096'}
+vim.g.coc_node_args = {'--max-old-space-size=20096'}
 
 -- Auto download coc extensions
-vim.g.coc_global_extensions = {'coc-json', 'coc-lists', 'coc-pyright'}
+vim.g.coc_global_extensions = {'coc-json', 'coc-lists', 'coc-pyright', 'coc-snippets'}
 
 -- Some servers have issues with backup files, see #649
 vim.opt.backup = false
@@ -239,9 +239,11 @@ require('packer').startup(function(use)
     use {'neoclide/coc.nvim', branch = 'release'}
     use 'tpope/vim-commentary'
     use 'itchyny/lightline.vim'
-    use 'olliecheer/vim-diagon'
+    use 'dhananjaylatkar/cscope_maps.nvim'
 
   if packer_bootstrap then
     require('packer').sync()
   end
 end)
+
+require("cscope_maps").setup({})
