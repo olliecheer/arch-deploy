@@ -239,7 +239,10 @@ require('packer').startup(function(use)
     use {'neoclide/coc.nvim', branch = 'release'}
     use 'tpope/vim-commentary'
     use 'itchyny/lightline.vim'
-    use 'dhananjaylatkar/cscope_maps.nvim'
+    use 'olliecheer/cscope_maps.nvim'
+    use "nvim-telescope/telescope.nvim"
+    use "nvim-lua/plenary.nvim"
+    use 'tanvirtin/monokai.nvim'
 
   if packer_bootstrap then
     require('packer').sync()
@@ -247,3 +250,4 @@ require('packer').startup(function(use)
 end)
 
 require("cscope_maps").setup({})
+-- require('monokai').setup { palette = require('monokai').soda }
